@@ -1,0 +1,58 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+.anecdote-container input[type='button'] {
+  background-color: #1874d1;
+  color: white;
+  border-radius: 10%;
+  margin: 5px;
+  width: 100px;
+  height: 40px;
+}
+.anecdote-container input[type='button']:disabled {
+  opacity: 0.5;
+}
+.anecdote {
+  font-family: 'Krona One', sans-serif;
+  width: fit-content;
+}
+span.score {
+  color: rgb(211, 101, 11);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'KronaOne';
+  src: url('./assets/fonts/Krona/KronaOne-Regular.ttf') format('woff');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Hind';
+  src: url('./assets/fonts/Hind/Hind-Light.ttf') format('woff');
+  font-style: initial;
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Hind';
+  src: url('./assets/fonts/Hind/Hind-Regular.ttf') format('woff');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Hind';
+  src: url('./assets/fonts/Hind/Hind-Bold.ttf') format('woff');
+  font-style: normal;
+  font-weight: bold;
+}
+
+p.sentence {
+  font-family: 'KronaOne', sans-serif;
+}
+
+p.result {
+  font-family: 'Hind', sans-serif;
+}
