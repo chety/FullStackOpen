@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../app.css';
+import './app.css';
 
 export function Anecdote({ anecdotes }) {
   const [selectedAnecdote, setSelectedAnecdote] = useState(null);

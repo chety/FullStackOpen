@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { FeedBack } from './unicafe/FeedBack';
-import { Statistic } from './unicafe/Statistic';
+import { FeedBack } from './part1/unicafe/FeedBack';
+import { Statistic } from './part1/unicafe/Statistic';
 const App = () => {
   const [feedBack, setFeedBack] = useState({
     good: 0,

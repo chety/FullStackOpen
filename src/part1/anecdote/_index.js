@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Anecdote } from './anecdote/Anecdote';
+import { Anecdote } from './part1/anecdote/Anecdote';
 
 const anecdotes = [
   'If it hurts, do it more often',
