@@ -7,7 +7,7 @@ export function PhoneBook() {
   const [persons, setPersons] = useState([
     {
       name: 'Chety Clooney',
-      phone: '+90 (534) 273 48 31',
+      phone: '+31 (234) 122 11 55',
     },
   ]);
 
