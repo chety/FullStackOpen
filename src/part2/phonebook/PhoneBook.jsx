@@ -1,38 +1,56 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { PersonForm } from './components/PersonForm';
 import { Persons } from './components/Persons';
 import { Search } from './components/Search';
 
 export function PhoneBook() {
-  const [persons, setPersons] = useState([
-    {
-      name: 'Chety Clooney',
-      phone: '+90 (534) 273 48 31',
-    },
-  ]);
+  const [persons, setPersons] = useState([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(({ data }) => setPersons(data));
+  }, []);
 
-  const [newName, setNewName] = useState('');
-  const [newPhone, setNewPhone] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [search, setSearch] = useState('');
 
-  function onHandleSubmit(event) {
-    event.preventDefault();
-    const isUserExist = persons.some((person) => person.name === newName);
+  function onHandleSubmit() {
+    const isUserExist = persons.some((person) => person.name === name);
     if (isUserExist) {
-      alert(`${newName} is already added to phonebook`);
+      alert(`${name} is already exist`);
       return;
     }
-    setPersons([...persons, { name: newName, phone: newPhone }]);
-    setNewName('');
-    setNewPhone('');
+    const id = Math.max(...persons.map((person) => person.id)) + 1;
+    const person = {
+      name,
+      phone,
+      id,
+    };
+    setPersons([...persons, person]);
+    addPerson(person);
+    setName('');
+    setPhone('');
+  }
+
+  function addPerson(person) {
+    axios
+      .post('http://localhost:3001/persons', person)
+      .then((_) => {
+        alert(`${person.name} has successfully added`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   function onHandleNameChange(event) {
-    setNewName(event.target.value);
+    setName(event.target.value);
   }
 
   function onHandlePhoneChange(event) {
-    setNewPhone(event.target.value);
+    setPhone(event.target.value);
   }
 
   function onHandleSearchChange(event) {
@@ -53,8 +71,8 @@ export function PhoneBook() {
         onSubmitChanged={onHandleSubmit}
         onNameChanged={onHandleNameChange}
         onPhoneChanged={onHandlePhoneChange}
-        name={newName}
-        phone={newPhone}
+        name={name}
+        phone={phone}
       />
 
       <h2>Numbers</h2>

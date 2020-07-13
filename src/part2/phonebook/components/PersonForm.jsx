@@ -8,9 +8,17 @@ export function PersonForm({
   onNameChanged,
   onPhoneChanged,
 }) {
+  const nameRef = React.createRef();
+
+  function onSubmit(event) {
+    event.preventDefault();
+    nameRef.current.focus();
+    onSubmitChanged();
+  }
+
   return (
     <>
-      <form onSubmit={onSubmitChanged}>
+      <form onSubmit={onSubmit}>
         <div className='formField'>
           <label htmlFor='name'>Name: </label>
           <input
@@ -18,6 +26,7 @@ export function PersonForm({
             placeholder='Enter Name...'
             value={name}
             onChange={onNameChanged}
+            ref={nameRef}
             required
           />
         </div>

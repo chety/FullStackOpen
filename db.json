@@ -1,0 +1,84 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "HTML is easy",
+      "date": "2019-05-30T17:30:31.098Z",
+      "important": true
+    },
+    {
+      "id": 2,
+      "content": "Browser can execute only JavaScript",
+      "date": "2019-05-30T18:39:34.091Z",
+      "important": false
+    },
+    {
+      "id": 3,
+      "content": "GET and POST are the most important methods of HTTP protocol",
+      "date": "2019-05-30T19:20:14.298Z",
+      "important": true
+    },
+    {
+      "id": "4",
+      "content": "rodiko",
+      "date": "2020-07-11T13:39:31.531Z",
+      "important": true
+    },
+    {
+      "id": 5,
+      "content": "mirokko",
+      "date": "2020-07-11T13:42:44.878Z",
+      "important": false
+    },
+    {
+      "id": 6,
+      "content": "bip",
+      "date": "2020-07-11T13:44:23.823Z",
+      "important": true
+    },
+    {
+      "id": 7,
+      "content": "chety",
+      "date": "2020-07-11T14:12:06.405Z",
+      "important": false
+    },
+    {
+      "id": 8,
+      "content": "zehru",
+      "date": "2020-07-11T14:14:00.563Z",
+      "important": false
+    }
+  ],
+  "persons": [
+    {
+      "name": "Arto Hellas",
+      "number": "040-123456",
+      "id": 1
+    },
+    {
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523",
+      "id": 2
+    },
+    {
+      "name": "Dan Abramov",
+      "number": "12-43-234345",
+      "id": 3
+    },
+    {
+      "name": "Mary Poppendieck",
+      "number": "39-23-6423122",
+      "id": 4
+    },
+    {
+      "name": "chety clooney",
+      "phone": "12345",
+      "id": 5
+    },
+    {
+      "name": "Miranes",
+      "phone": "123",
+      "id": 6
+    }
+  ]
+}

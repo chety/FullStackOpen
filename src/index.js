@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { PhoneBook } from './part2/phonebook/PhoneBook';
+import { CountryApp } from './part2/country/CountryApp';
 const App = () => {
-  return <PhoneBook />;
+  return <CountryApp />;
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
