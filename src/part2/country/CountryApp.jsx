@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Country } from './Country';
+import { Country } from './components/Country';
 
 export function CountryApp() {
   const [countries, setCountries] = useState([]);

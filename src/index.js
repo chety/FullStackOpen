@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CountryApp } from './part2/country/CountryApp';
+import { NoteApp } from './part2/notes/NoteApp';
 const App = () => {
-  return <CountryApp />;
+  return <NoteApp />;
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));

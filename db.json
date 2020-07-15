@@ -19,33 +19,15 @@
       "important": true
     },
     {
-      "id": "4",
-      "content": "rodiko",
-      "date": "2020-07-11T13:39:31.531Z",
-      "important": true
+      "id": 4,
+      "content": "chety is awsome",
+      "date": "2020-07-15T17:59:38.795Z",
+      "important": false
     },
     {
       "id": 5,
-      "content": "mirokko",
-      "date": "2020-07-11T13:42:44.878Z",
-      "important": false
-    },
-    {
-      "id": 6,
-      "content": "bip",
-      "date": "2020-07-11T13:44:23.823Z",
-      "important": true
-    },
-    {
-      "id": 7,
-      "content": "chety",
-      "date": "2020-07-11T14:12:06.405Z",
-      "important": false
-    },
-    {
-      "id": 8,
-      "content": "zehru",
-      "date": "2020-07-11T14:14:00.563Z",
+      "content": "zehru is ok",
+      "date": "2020-07-15T17:59:44.442Z",
       "important": false
     }
   ],
