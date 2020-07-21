@@ -17,11 +17,22 @@ export function PhoneBook() {
   const [search, setSearch] = useState('');
 
   function onHandleSubmit() {
-    const isUserExist = persons.some((person) => person.name === name);
-    if (isUserExist) {
-      alert(`${name} is already exist`);
-      return;
+    const user = persons.find((person) => person.name === name);
+
+    if (user) {
+      // eslint-disable-next-line
+      const shouldUpdate = confirm(
+        `${user.name} is already added to phonebook, replace the old number with a new one?`
+      );
+      if (shouldUpdate) {
+        updateUser(user);
+      }
+    } else {
+      addUser();
     }
+  }
+
+  function addUser() {
     const id = Math.max(...persons.map((person) => person.id)) + 1;
     const person = {
       name,
@@ -30,6 +41,23 @@ export function PhoneBook() {
     };
     setPersons([...persons, person]);
     addPerson(person);
+    emptyNameAndPhone();
+  }
+
+  function updateUser(user) {
+    const updatedUser = { ...user, phone };
+    axios
+      .put(`http://localhost:3001/persons/${user.id}`, updatedUser)
+      .then(({ data }) => {
+        const updatedUsers = persons.map((person) =>
+          person.id === data.id ? data : person
+        );
+        setPersons(updatedUsers);
+        emptyNameAndPhone();
+      });
+  }
+
+  function emptyNameAndPhone() {
     setName('');
     setPhone('');
   }
@@ -56,6 +84,20 @@ export function PhoneBook() {
   function onHandleSearchChange(event) {
     setSearch(event.target.value.toLocaleLowerCase('tr-TR'));
   }
+
+  function onHandlePersonDeleted(id) {
+    const person = persons.find((person) => person.id === id);
+    // eslint-disable-next-line
+    const shouldDelete = confirm(`Delete ${person.name}`);
+    if (!shouldDelete) {
+      return;
+    }
+    axios.delete(`http://localhost:3001/persons/${id}`).then((_) => {
+      const remainedPersons = persons.filter((person) => person.id !== id);
+      setPersons(remainedPersons);
+    });
+  }
+
   const personToShow = search
     ? persons.filter(({ name }) =>
         name.toLocaleLowerCase('tr-TR').includes(search)
@@ -76,7 +118,7 @@ export function PhoneBook() {
       />
 
       <h2>Numbers</h2>
-      <Persons persons={personToShow} />
+      <Persons persons={personToShow} onPersonDeleted={onHandlePersonDeleted} />
     </>
   );
 }
