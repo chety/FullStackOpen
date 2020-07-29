@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Footer } from '../../common/Footer/Footer';
+import { Notification } from '../../common/Notification/Notification';
 import { PersonForm } from './components/PersonForm';
 import { Persons } from './components/Persons';
 import { Search } from './components/Search';
 
 export function PhoneBook() {
   const [persons, setPersons] = useState([]);
+  const [message, setMessage] = useState({ text: null, type: null });
   useEffect(() => {
     axios
       .get('http://localhost:3001/persons')
@@ -39,7 +42,6 @@ export function PhoneBook() {
       phone,
       id,
     };
-    setPersons([...persons, person]);
     addPerson(person);
     emptyNameAndPhone();
   }
@@ -54,6 +56,17 @@ export function PhoneBook() {
         );
         setPersons(updatedUsers);
         emptyNameAndPhone();
+      })
+      .catch(({ stack }) => {
+        setMessage({
+          text: stack,
+          type: 'error',
+        });
+      })
+      .finally((_) => {
+        setTimeout(() => {
+          setMessage({ text: null });
+        }, 3000);
       });
   }
 
@@ -66,10 +79,22 @@ export function PhoneBook() {
     axios
       .post('http://localhost:3001/persons', person)
       .then((_) => {
-        alert(`${person.name} has successfully added`);
+        setMessage({
+          text: `${person.name} has successfully added`,
+          type: 'info',
+        });
+        setPersons([...persons, person]);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(({ stack }) => {
+        setMessage({
+          text: stack,
+          type: 'error',
+        });
+      })
+      .finally((_) => {
+        setTimeout(() => {
+          setMessage({ text: null });
+        }, 3000);
       });
   }
 
@@ -92,10 +117,20 @@ export function PhoneBook() {
     if (!shouldDelete) {
       return;
     }
-    axios.delete(`http://localhost:3001/persons/${id}`).then((_) => {
-      const remainedPersons = persons.filter((person) => person.id !== id);
-      setPersons(remainedPersons);
-    });
+    axios
+      .delete(`http://localhost:3001/persons/${id}`)
+      .then((_) => {
+        const remainedPersons = persons.filter((person) => person.id !== id);
+        setPersons(remainedPersons);
+        setMessage({
+          text: `${person.name} deleted successfully`,
+        });
+      })
+      .finally((_) => {
+        setTimeout(() => {
+          setMessage({ text: null });
+        }, 3000);
+      });
   }
 
   const personToShow = search
@@ -103,9 +138,11 @@ export function PhoneBook() {
         name.toLocaleLowerCase('tr-TR').includes(search)
       )
     : persons;
+  const { type, text } = message;
   return (
     <>
       <h2>PhoneBook</h2>
+      <Notification message={text} type={type} />
       <Search searchChanged={onHandleSearchChange} />
 
       <h2>Add A New</h2>
@@ -119,6 +156,7 @@ export function PhoneBook() {
 
       <h2>Numbers</h2>
       <Persons persons={personToShow} onPersonDeleted={onHandlePersonDeleted} />
+      <Footer appName='PhoneBook App' />
     </>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Footer } from '../../common/Footer/Footer';
 import { CustomLoader } from '../../common/Loader/Loader';
+import { Notification } from '../../common/Notification/Notification';
 import { create, getAll, update } from '../../services/notes';
 import { Note } from './Note';
 export function NoteApp() {
@@ -76,7 +78,7 @@ export function NoteApp() {
     return (
       <React.StrictMode>
         {loading ? <CustomLoader /> : null}
-        {error ? <p style={{ color: 'red' }}>{error}</p> : null}
+        <Notification message={error} />
         <ul>
           {notes.map(({ id, content, important }) => (
             <Note
@@ -97,6 +99,7 @@ export function NoteApp() {
           />
           <button type='submit'>Add</button>
         </form>
+        <Footer appName='Note App' />
       </React.StrictMode>
     );
   }
